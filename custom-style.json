@@ -19,7 +19,10 @@
                     "case",
                     [
                         "boolean",
-                        ["feature-state", "hover"],
+                        [
+                            "feature-state",
+                            "hover"
+                        ],
                         false
                     ],
                     4,
@@ -34,27 +37,41 @@
             "paint": {
                 "fill-extrusion-color": [
                     "step",
-                    ["get", "count"],
+                    [
+                        "get",
+                        "count"
+                    ],
                     "#feebe2",
-                    50, "#fcc5c0",
-                    100, "#fa9fb5",
-                    300, "#f768a1",
-                    600, "#c51b8a",
-                    1000, "#7a0177"
+                    50,
+                    "#fcc5c0",
+                    100,
+                    "#fa9fb5",
+                    300,
+                    "#f768a1",
+                    600,
+                    "#c51b8a",
+                    1000,
+                    "#7a0177"
                 ],
                 "fill-extrusion-opacity": 0.5,
                 "fill-extrusion-height": [
                     "+",
                     [
                         "*",
-                        ["get", "count"],
+                        [
+                            "get",
+                            "count"
+                        ],
                         5
                     ],
                     [
                         "case",
                         [
                             "boolean",
-                            ["feature-state", "hover"],
+                            [
+                                "feature-state",
+                                "hover"
+                            ],
                             false
                         ],
                         1000,
@@ -65,7 +82,10 @@
                     "case",
                     [
                         "boolean",
-                        ["feature-state", "hover"],
+                        [
+                            "feature-state",
+                            "hover"
+                        ],
                         false
                     ],
                     1000,

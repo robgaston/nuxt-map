@@ -15,8 +15,8 @@ onMounted(() => {
     "style": "mapbox://styles/rgaston/cltah5jc400kj01raejpg0tkh",
     "zoom": 9,
     "center": [
-        -118.3875,
-        34.03756
+      -118.3875,
+      34.03756
     ],
     "pitch": 40,
     "customAttribution": "<a href='https://hpla.lacity.org/' target='_blank'>Historic Places LA</a> | <a href='https://geohub.lacity.org/' target='_blank'>Los Angeles City GeoHub</a>"
@@ -26,8 +26,8 @@ onMounted(() => {
     const neighborhoods = await import("../data/count-by-neighborhoods.json");
     const style = map.getStyle();
     style.sources = {
-        ...style.sources,
-        ...custom.sources
+      ...style.sources,
+      ...custom.sources
     };
     style.layers.push(...custom.layers);
     map.setStyle(style);
@@ -60,17 +60,17 @@ onMounted(() => {
     const fillColorStyle = map.getPaintProperty("neighborhoods-fill", "fill-extrusion-color");
     let fromValue = 0;
     fillColorStyle.splice(0, 2);
-    
-    for (let index = 0; index < fillColorStyle.length; index+=2) {
-      const toValue = fillColorStyle[index+1];
+
+    for (let index = 0; index < fillColorStyle.length; index += 2) {
+      const toValue = fillColorStyle[index + 1];
       const item = {
         color: fillColorStyle[index]
       };
 
-      if (index==fillColorStyle.length-1) {
+      if (index == fillColorStyle.length - 1) {
         item.text = `>=${fromValue}`;
       } else {
-        item.text = `${fromValue}-${toValue-1}`;
+        item.text = `${fromValue}-${toValue - 1}`;
       }
 
       legendItems.value.push(item);
@@ -106,53 +106,56 @@ onMounted(() => {
 </template>
 
 <style scoped>
-  main {
-      display: block;
-      position: fixed;
-      top: 66px;
-      right: 0;
-      bottom: 0;
-      left: 0;
-  }
+main {
+  display: block;
+  position: fixed;
+  top: 66px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
 
-  #map {
-      height: 100%;
-  }
+#map {
+  height: 100%;
+}
 
-  header {
-      font-weight: bold;
-      background-color: rgb(190, 190, 190);
-      border-bottom: 2px solid black;
-  }
+header {
+  font-weight: bold;
+  background-color: rgb(190, 190, 190);
+  border-bottom: 2px solid black;
+}
 
-  header div {
-      font-size: 0.9em;
-      font-weight: normal;
-  }
+header div {
+  font-size: 0.9em;
+  font-weight: normal;
+}
 
-  #popup {
-      top: 86px;
-  }
+#popup {
+  top: 86px;
+}
 
-  #popup, #legend {
-      position: fixed;
-      right: 20px;
-      border: 1px solid black;
-  }
+#popup,
+#legend {
+  position: fixed;
+  right: 20px;
+  border: 1px solid black;
+}
 
-  #legend {
-      bottom: 40px;
-  }
+#legend {
+  bottom: 40px;
+}
 
-  header, #popup, #legend {
-      background-color: rgb(190, 190, 190);
-      padding: 15px;
-  }
+header,
+#popup,
+#legend {
+  background-color: rgb(190, 190, 190);
+  padding: 15px;
+}
 
-  .color {
-      display: inline-block;
-      height: 10px;
-      width: 10px;
-      border: 1px solid black;
-  }
+.color {
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  border: 1px solid black;
+}
 </style>
