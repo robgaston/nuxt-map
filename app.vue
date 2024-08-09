@@ -1,11 +1,12 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue';
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import custom from "./custom-style.json";
 
 const hoverFeature = ref();
 const legendItems = ref([]);
+const attribution = ref();
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoicmdhc3RvbiIsImEiOiJJYTdoRWNJIn0.MN6DrT07IEKXadCU8xpUMg';
 
@@ -19,7 +20,7 @@ onMounted(() => {
       34.03756
     ],
     "pitch": 40,
-    "customAttribution": "<a href='https://hpla.lacity.org/' target='_blank'>Historic Places LA</a> | <a href='https://geohub.lacity.org/' target='_blank'>Los Angeles City GeoHub</a>"
+    "customAttribution": attribution.value.innerHTML
   });
 
   map.on("load", async () => {
@@ -103,11 +104,19 @@ onMounted(() => {
       </div>
     </div>
   </main>
+  <span ref="attribution" class="attribution">
+    <a href='https://hpla.lacity.org/' target='_blank'>
+      Historic Places LA
+    </a>
+    |
+    <a href='https://geohub.lacity.org/' target='_blank'>
+      Los Angeles City GeoHub
+    </a>
+  </span>
 </template>
 
 <style scoped>
 main {
-  display: block;
   position: fixed;
   top: 66px;
   right: 0;
@@ -128,6 +137,10 @@ header {
 header div {
   font-size: 0.9em;
   font-weight: normal;
+}
+
+.attribution {
+  display: none;
 }
 
 #popup {
