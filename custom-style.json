@@ -1,0 +1,77 @@
+{
+    "sources": {
+        "neighborhoods-polygons": {
+            "type": "geojson",
+            "data": {
+                "type": "FeatureCollection",
+                "features": []
+            }
+        }
+    },
+    "layers": [
+        {
+            "id": "neighborhoods-outline",
+            "type": "line",
+            "source": "neighborhoods-polygons",
+            "paint": {
+                "line-color": "rgb(231, 37, 144)",
+                "line-width": [
+                    "case",
+                    [
+                        "boolean",
+                        ["feature-state", "hover"],
+                        false
+                    ],
+                    4,
+                    2
+                ]
+            }
+        },
+        {
+            "id": "neighborhoods-fill",
+            "type": "fill-extrusion",
+            "source": "neighborhoods-polygons",
+            "paint": {
+                "fill-extrusion-color": [
+                    "step",
+                    ["get", "count"],
+                    "#feebe2",
+                    50, "#fcc5c0",
+                    100, "#fa9fb5",
+                    300, "#f768a1",
+                    600, "#c51b8a",
+                    1000, "#7a0177"
+                ],
+                "fill-extrusion-opacity": 0.5,
+                "fill-extrusion-height": [
+                    "+",
+                    [
+                        "*",
+                        ["get", "count"],
+                        5
+                    ],
+                    [
+                        "case",
+                        [
+                            "boolean",
+                            ["feature-state", "hover"],
+                            false
+                        ],
+                        1000,
+                        0
+                    ]
+                ],
+                "fill-extrusion-base": [
+                    "case",
+                    [
+                        "boolean",
+                        ["feature-state", "hover"],
+                        false
+                    ],
+                    1000,
+                    0
+                ]
+            }
+        }
+    ]
+}
