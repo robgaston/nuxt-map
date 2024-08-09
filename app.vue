@@ -5,6 +5,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import custom from "./custom-style.json";
 
 const hoverFeature = ref();
+const legendItems = ref([]);
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoicmdhc3RvbiIsImEiOiJJYTdoRWNJIn0.MN6DrT07IEKXadCU8xpUMg';
 
@@ -55,6 +56,26 @@ onMounted(() => {
         source: "neighborhoods-polygons"
       });
     });
+
+    const fillColorStyle = map.getPaintProperty("neighborhoods-fill", "fill-extrusion-color");
+    let fromValue = 0;
+    fillColorStyle.splice(0, 2);
+    
+    for (let index = 0; index < fillColorStyle.length; index+=2) {
+      const toValue = fillColorStyle[index+1];
+      const item = {
+        color: fillColorStyle[index]
+      };
+
+      if (index==fillColorStyle.length-1) {
+        item.text = `>=${fromValue}`;
+      } else {
+        item.text = `${fromValue}-${toValue-1}`;
+      }
+
+      legendItems.value.push(item);
+      fromValue = toValue;
+    }
   });
 });
 </script>
@@ -75,6 +96,11 @@ onMounted(() => {
     </div>
     <div id="legend">
       <div># of Sites</div>
+      <div v-for="item in legendItems">
+        <span class="color" v-bind:style="{ backgroundColor: item.color }"></span>
+        &nbsp;
+        <span>{{ item.text }}</span>
+      </div>
     </div>
   </main>
 </template>
