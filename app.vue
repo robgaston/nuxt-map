@@ -115,9 +115,8 @@ onMounted(() => {
   </div>
   <div ref="attribution" class="hidden">
     <a href="https://hpla.lacity.org/" target="_blank">
-      Historic Places LA
+      Historic Places LA,
     </a>
-    |
     <a href="https://geohub.lacity.org/" target="_blank">
       Los Angeles City GeoHub
     </a>
