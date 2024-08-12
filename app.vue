@@ -11,13 +11,19 @@ const legendItems = ref([]);
 const attribution = ref();
 const mapEl = ref();
 
-
 onMounted(() => {
   const map = new mapboxgl.Map({
     "container": mapEl.value,
     "style": style,
+    "bounds": [
+      -118.668117720454,
+      33.70467436671,
+      -118.155370349007,
+      34.3373108721271
+    ],
     "customAttribution": attribution.value.innerHTML
   });
+  map.setPitch(40);
 
   map.on("load", async () => {
     const neighborhoods = await import("../data/neighborhoods.json");
