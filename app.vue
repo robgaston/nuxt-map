@@ -7,7 +7,7 @@ import style from "./mapbox/style.json";
 mapboxgl.accessToken = "pk.eyJ1Ijoicmdhc3RvbiIsImEiOiJJYTdoRWNJIn0.MN6DrT07IEKXadCU8xpUMg";
 
 const attribution = ref();
-const mapEl = ref();
+const mapContainer = ref();
 const hoverFeature = ref();
 const fillColorStyle = ref();
 
@@ -31,7 +31,7 @@ const legendEntries = computed(() => {
 
 onMounted(() => {
   const map = new mapboxgl.Map({
-    "container": mapEl.value,
+    "container": mapContainer.value,
     "style": style,
     "bounds": [
       -118.668117720454,
@@ -95,7 +95,7 @@ onMounted(() => {
       </div>
     </div>
     <div class="content">
-      <div ref="mapEl" class="map"></div>
+      <div ref="mapContainer" class="map"></div>
       <div class="panel floating top" v-if="hoverFeature">
         <div>{{ hoverFeature.properties.name }}</div>
         <div>
