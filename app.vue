@@ -39,9 +39,12 @@ onMounted(() => {
       -118.155370349007,
       34.3373108721271
     ],
+    "fitBoundsOptions": {
+      "pitch": 40,
+      "padding": 50
+    },
     "customAttribution": attribution.value.innerHTML
   });
-  map.setPitch(40);
 
   map.on("load", async () => {
     const neighborhoods = await import("../data/neighborhoods.json");
