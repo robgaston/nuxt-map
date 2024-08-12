@@ -8,7 +8,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "process": "node --experimental-modules --experimental-json-modules process.js"
+    "process-data": "node --experimental-modules --experimental-json-modules process-data.js"
   },
   "dependencies": {
     "@turf/turf": "^7.1.0",
