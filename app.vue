@@ -53,7 +53,6 @@ onMounted(() => {
 
     map.on("mousemove", layerName, (event) => {
       hoverFeature.value = event.features[0];
-
       map.removeFeatureState({
         source: sourceName
       });
@@ -67,7 +66,6 @@ onMounted(() => {
 
     map.on("mouseleave", layerName, () => {
       hoverFeature.value = null;
-
       map.removeFeatureState({
         source: sourceName
       });
