@@ -16,7 +16,6 @@ const legendEntries = computed(() => {
   const entries = [];
   if (fillColorStyle.value) {
     const styleArray = fillColorStyle.value.toSpliced(0, 2);
-
     for (let index = 0; index < styleArray.length; index += 2) {
       const toValue = styleArray[index + 1];
       const entry = {
@@ -27,7 +26,6 @@ const legendEntries = computed(() => {
       fromValue = toValue;
     }
   }
-
   return entries;
 });
 
