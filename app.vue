@@ -1,15 +1,35 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref } from "vue";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import style from "./mapbox/style.json";
 
-mapboxgl.accessToken = 'pk.eyJ1Ijoicmdhc3RvbiIsImEiOiJJYTdoRWNJIn0.MN6DrT07IEKXadCU8xpUMg';
+mapboxgl.accessToken = "pk.eyJ1Ijoicmdhc3RvbiIsImEiOiJJYTdoRWNJIn0.MN6DrT07IEKXadCU8xpUMg";
 
-const hoverFeature = ref();
-const legendItems = ref([]);
 const attribution = ref();
 const mapEl = ref();
+const hoverFeature = ref();
+const fillColorStyle = ref();
+
+const legendEntries = computed(() => {
+  let fromValue = 0;
+  const entries = [];
+  if (fillColorStyle.value) {
+    const styleArray = fillColorStyle.value.toSpliced(0, 2);
+
+    for (let index = 0; index < styleArray.length; index += 2) {
+      const toValue = styleArray[index + 1];
+      const entry = {
+        color: styleArray[index],
+        text: (index == styleArray.length - 1) ? `>=${fromValue}` : `${fromValue}-${toValue - 1}`
+      };
+      entries.push(entry);
+      fromValue = toValue;
+    }
+  }
+
+  return entries;
+});
 
 onMounted(() => {
   const map = new mapboxgl.Map({
@@ -47,7 +67,7 @@ onMounted(() => {
       });
     });
 
-    map.on("mouseleave", layerName, (event) => {
+    map.on("mouseleave", layerName, () => {
       hoverFeature.value = null;
 
       map.removeFeatureState({
@@ -55,25 +75,7 @@ onMounted(() => {
       });
     });
 
-    const fillColorStyle = map.getPaintProperty(layerName, "fill-extrusion-color");
-    let fromValue = 0;
-    fillColorStyle.splice(0, 2);
-
-    for (let index = 0; index < fillColorStyle.length; index += 2) {
-      const toValue = fillColorStyle[index + 1];
-      const item = {
-        color: fillColorStyle[index]
-      };
-
-      if (index == fillColorStyle.length - 1) {
-        item.text = `>=${fromValue}`;
-      } else {
-        item.text = `${fromValue}-${toValue - 1}`;
-      }
-
-      legendItems.value.push(item);
-      fromValue = toValue;
-    }
+    fillColorStyle.value = map.getPaintProperty(layerName, "fill-extrusion-color");
   });
 });
 </script>
@@ -97,22 +99,22 @@ onMounted(() => {
           historic site(s) cataloged
         </div>
       </div>
-      <div class="panel floating bottom" v-show="legendItems.length > 0">
+      <div class="panel floating bottom" v-show="legendEntries.length > 0">
         <div># of Sites</div>
-        <div v-for="item in legendItems">
-          <span class="color" v-bind:style="{ backgroundColor: item.color }"></span>
+        <div v-for="entry in legendEntries">
+          <span class="color" v-bind:style="{ backgroundColor: entry.color }"></span>
           &nbsp;
-          <span>{{ item.text }}</span>
+          <span>{{ entry.text }}</span>
         </div>
       </div>
     </div>
   </div>
   <div ref="attribution" class="hidden">
-    <a href='https://hpla.lacity.org/' target='_blank'>
+    <a href="https://hpla.lacity.org/" target="_blank">
       Historic Places LA
     </a>
     |
-    <a href='https://geohub.lacity.org/' target='_blank'>
+    <a href="https://geohub.lacity.org/" target="_blank">
       Los Angeles City GeoHub
     </a>
   </div>
