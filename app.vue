@@ -41,7 +41,12 @@ onMounted(() => {
     ],
     "fitBoundsOptions": {
       "pitch": 40,
-      "padding": 50
+      "padding": {
+        "top": 0,
+        "bottom": 100,
+        "left": 10,
+        "right": 10
+      }
     },
     "customAttribution": attribution.value.innerHTML
   });
