@@ -20,7 +20,7 @@ onMounted(() => {
   });
 
   map.on("load", async () => {
-    const neighborhoods = await import("../data/count-by-neighborhoods.json");
+    const neighborhoods = await import("../data/neighborhoods.json");
     const sourceName = "neighborhoods-polygons";
     const layerName = "neighborhoods-fill";
 

@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "nuxt-map",
   "private": true,
   "type": "module",
   "scripts": {
@@ -7,9 +7,11 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "process": "node --experimental-modules --experimental-json-modules process.js"
   },
   "dependencies": {
+    "@turf/turf": "^7.1.0",
     "mapbox-gl": "^3.5.2",
     "nuxt": "^3.12.4",
     "vue": "latest"
