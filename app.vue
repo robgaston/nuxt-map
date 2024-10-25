@@ -131,7 +131,7 @@ onMounted(() => {
 
 .content {
   flex-grow: 1;
-  position: relative
+  position: relative;
 }
 
 .map {
