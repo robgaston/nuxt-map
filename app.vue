@@ -53,7 +53,7 @@ onMounted(() => {
 
   map.on("load", async () => {
     const neighborhoods = await import("../data/neighborhoods.json");
-    const sourceName = "neighborhoods-polygons";
+    const sourceName = "neighborhoods";
     const layerName = "neighborhoods-fill";
 
     map.getSource(sourceName)
@@ -107,7 +107,6 @@ onMounted(() => {
         <div># of Sites</div>
         <div v-for="entry in legendEntries">
           <span class="color" v-bind:style="{ backgroundColor: entry.color }"></span>
-          &nbsp;
           <span>{{ entry.text }}</span>
         </div>
       </div>
@@ -146,7 +145,7 @@ onMounted(() => {
 .panel {
   border: 1px solid black;
   background-color: rgb(190, 190, 190);
-  padding: 15px;
+  padding: 1em;
 }
 
 .floating {
@@ -172,8 +171,8 @@ onMounted(() => {
 
 .color {
   display: inline-block;
-  height: 10px;
-  width: 10px;
-  border: 1px solid black;
+  height: 1em;
+  width: 1em;
+  margin-right: 1em;
 }
 </style>
