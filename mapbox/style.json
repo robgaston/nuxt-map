@@ -26,6 +26,7 @@
             "id": "neighborhoods-outline",
             "type": "line",
             "source": "neighborhoods",
+            "slot": "middle",
             "paint": {
                 "line-color": "rgb(231, 37, 144)",
                 "line-width": [
@@ -47,6 +48,7 @@
             "id": "neighborhoods-fill",
             "type": "fill-extrusion",
             "source": "neighborhoods",
+            "slot": "middle",
             "paint": {
                 "fill-extrusion-color": [
                     "step",

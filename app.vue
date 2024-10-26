@@ -6,8 +6,8 @@ import style from "./mapbox/style.json";
 
 mapboxgl.accessToken = "pk.eyJ1Ijoicmdhc3RvbiIsImEiOiJJYTdoRWNJIn0.MN6DrT07IEKXadCU8xpUMg";
 
-const attribution = ref();
 const mapContainer = ref();
+const attribution = ref();
 const hoverFeature = ref();
 const fillColorStyle = ref();
 
@@ -64,10 +64,7 @@ onMounted(() => {
       map.removeFeatureState({
         source: sourceName
       });
-      map.setFeatureState({
-        source: sourceName,
-        id: event.features[0].id
-      }, {
+      map.setFeatureState(hoverFeature.value, {
         hover: true
       });
     });
